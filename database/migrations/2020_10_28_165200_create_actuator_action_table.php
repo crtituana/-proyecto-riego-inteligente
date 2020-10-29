@@ -16,11 +16,11 @@ class CreateActuatorActionTable extends Migration
         Schema::create('actuator_action', function (Blueprint $table) {
             $table->id();
             $table->integer('actuator_action_id');
-            $table->foreingId('actuator_id')->nullable()->constrained('ignug.catalogues');
-            $table->integer('time');
-            $table->integer('action_way');
+            $table->foreingId('actuator_id')->references('actuator_id')->nullabe();
+            $table->integer('time')->nullabe();
+            $table->smallInteger('action_way')->comment('0: Manual, 1: Automatic')->nullabe();
             $table->string('http', 100);
-            $table->integer('email_sent');
+            $table->smallInteger('email_sent')->comment('0: not sent, 1: sent')->nullabe();
             $table->timestamps();
         });
     }

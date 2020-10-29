@@ -15,7 +15,7 @@ class CreateModelControllerTable extends Migration
     {
         Schema::create('model_controller', function (Blueprint $table) {
             $table->id();
-            $table->integer('model_id');
+            $table->integer('model_controller_id')->nullable();
             $table->string('name', 50);
             $table->integer('nro_inputs');
             $table->integer('nro_outputs');

@@ -27,15 +27,15 @@ class CreateCustomerTable extends Migration
             $table->integer('shipping_region_id');
             $table->string('mob_phone', 100);
             $table->integer('country_id');
-            $table->integer('status_id')->nullable();
+            $table->integer('status_id')->comment('0=register, 1=verified')->nullable();
             $table->string('key', 20)->nullable();
             $table->timestamp('created_on');
             $table->string('domain', 400);
             $table->integer('time_zone');
-            $table->integer('attemps')->nullable();
+            $table->smallInteger('attemps')->comment('umber of attempts password')->nullable();
             $table->timestamp('locked_on');
-            $table->string('telegram_id', 100);
-            $table->timestamps(); 
+            $table->string('telegram_id', 100)->comment('telegram phone chat id');
+            $table->timestamps();  
         });
     }
 

@@ -15,10 +15,10 @@ class CreateControllerTable extends Migration
     {
         Schema::create('controller', function (Blueprint $table) {
             $table->id();
-            $table->integer('controller_id');
+            $table->foreingId('controller_id')->nullabe();
+            $table->foreingId('customer_id')->references('customer_id')->nullabe();
+            $table->foreingId('model_id')->references('model_id')->nullabe();
             $table->string('name', 50);
-            $table->integer('customer_id');
-            $table->integer('model_id');
             $table->timestamps();
         });
     }

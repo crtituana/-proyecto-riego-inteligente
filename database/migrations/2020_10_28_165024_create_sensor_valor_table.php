@@ -15,9 +15,10 @@ class CreateSensorValorTable extends Migration
     {
         Schema::create('sensor_valor', function (Blueprint $table) {
             $table->id();
-            $table->integer('sensor_id');
-            $table->float('valor');
-            $table->integer('tiempo');
+            $table->integer('sensor_valor_id')->nullable();
+            $table->foreingId('sensor_id')->references('sensor_id')->nullabe();
+            $table->float('valor')->nullabe();
+            $table->integer('tiempo')->nullabe();
             $table->timestamps();
         });
     }
