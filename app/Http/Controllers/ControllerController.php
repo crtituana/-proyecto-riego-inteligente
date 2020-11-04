@@ -1,84 +1,39 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+Use Exception;
+use App\Controller;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ControllerController extends Controller
+
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function getController(Request $request){
+        $controller = Controller::get();
+        return response()->json($controller, 200);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function postController(Request $request){
+        $data = $request->json()->all();
+        $controller = Controller::create([
+            'state'=> $data['state'],
+        ]);
+        return response()->json($controller, 201);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function putController(Request $request){
+        $data = $request->json()->all();
+        $controller = Controller::findOrFail($data['id']);
+        $response = $controller->update([
+            'state'=> $data['state'],
+        ]);
+        return response()->json($controller, 201);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function deleteController(Request $request){
+        $data = $request->json()->all();
+        $controller = Controller::findOrFail($data['id']);
+        $response = $controller->delete();
+        return response()->json($controller, 201);
     }
 }

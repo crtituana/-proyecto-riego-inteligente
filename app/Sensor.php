@@ -25,4 +25,5 @@ class Sensor extends Model
  {
      return $this->hasOne('App\Sensor_valor');
  }
+ 
 }

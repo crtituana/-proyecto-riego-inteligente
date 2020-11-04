@@ -15,4 +15,6 @@ class Sensor_valor extends Model
     {
         return $this->belongsTo('App\Sensor');
     }
+
+    
 }

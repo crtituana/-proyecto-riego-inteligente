@@ -1,84 +1,40 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+Use Exception;
+use App\Sensor_valor;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 
 class Sensor_valorController extends Controller
+
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function getSensor_valor(Request $request){
+        $sensor_valor = Sensor_valor::get();
+        return response()->json($sensor_valor, 200);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function postSensor_valor(Request $request){
+        $data = $request->json()->all();
+        $sensor_valor = Sensor_valor::create([
+            'state'=> $data['state'],
+        ]);
+        return response()->json($sensor_valor, 201);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function putSensor_valor(Request $request){
+        $data = $request->json()->all();
+        $sensor_valor = Sensor_valor::findOrFail($data['id']);
+        $response = $sensor_valor->update([
+            'state'=> $data['state'],
+        ]);
+        return response()->json($sensor_valor, 201);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function deleteSensor_valor(Request $request){
+        $data = $request->json()->all();
+        $sensor_valor = Sensor_valor::findOrFail($data['id']);
+        $response = $sensor_valor->delete();
+        return response()->json($sensor_valor, 201);
     }
 }
