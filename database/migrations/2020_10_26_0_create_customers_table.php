@@ -31,7 +31,7 @@ class CreateCustomersTable extends Migration
             $table->timestamp('created_on');
             $table->string('domain', 400);
             $table->integer('time_zone');
-            $table->smallInteger('attemps')->comment('umber of attempts password')->nullable();
+            $table->Integer('attemps')->comment('umber of attempts password')->nullable();
             $table->timestamp('locked_on');
             $table->string('telegram_id', 100)->comment('telegram phone chat id');
             $table->timestamps();  

@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Actuator extends Model
 {
+    protected $table ='actuators';
     protected $fillable = [
         'name',
         'status',
-       
-    ];
+       ];
 
     public function actuator_action()
     {

@@ -10,6 +10,11 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class CustomerController extends Controller
 
 {
+    public function index()
+    {
+        return view('customers.index');
+    }
+    
     public function getCustomer(Request $request){
         $customer = Customer::get();
         return response()->json($customer, 200);

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Controller extends Model
 {
+    protected $table ='controllers';
     protected $fillable = [
         'name',
         
